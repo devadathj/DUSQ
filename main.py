@@ -359,9 +359,6 @@ def run_hr_pipeline(csv_path, win_sec=12.0, step_sec=10.0, edge_trim_sec=2.0):
 
 
 if __name__ == "__main__":
-    # FILE = r"E:\Projects\Dusq\DUSQ_Round_2_Full_Day_Behind_the_Ear_Candidate_Package\dusq_round2_dataset_02.csv"
-    # OUTPUT_DF_PATH = r"E:\Projects\Dusq\DUSQ_Round_2_Full_Day_Behind_the_Ear_Candidate_Package\output_df.csv"
-    # OUTPUT_HR_PATH = r"E:\Projects\Dusq\DUSQ_Round_2_Full_Day_Behind_the_Ear_Candidate_Package\output_hr.csv"
 
     root = tk.Tk()
     root.withdraw()
@@ -378,11 +375,3 @@ if __name__ == "__main__":
         raise ValueError("Invalid file format. Please select a CSV file.")
 
     results_df = run_hr_pipeline(input_file_path)
-    print("\n--- Summary Statistics ---")
-    print(f"Total 10s windows evaluated : {len(results_df)}")
-    print(f"Trustworthy HR reported     : {results_df['bpm_estimate'].notna().sum()} ({100*results_df['bpm_estimate'].notna().mean():.1f}%)")
-    print(f"Abstained (blank) windows   : {results_df['bpm_estimate'].isna().sum()} ({100*results_df['bpm_estimate'].isna().mean():.1f}%)")
-    print("\nBPM Estimate Distribution:")
-    print(results_df['bpm_estimate'].describe())
-    print("\nFirst 20 Windows:")
-    print(results_df.head(20).to_string(index=False))
